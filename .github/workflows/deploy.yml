@@ -30,10 +30,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Remove old build artifacts
+        run: rm -rf .next out
+
       - name: Build
         run: npm run build
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Verify build output
+        run: |
+          echo "=== out/ contents ===" && ls out/
+          echo "=== HTML files ===" && find out -name "*.html" | sort
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
