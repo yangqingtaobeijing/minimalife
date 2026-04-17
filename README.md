@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MinimaLife — AI 极简生活管家
 
-## Getting Started
+上传一张房间照片，AI 帮你分析杂乱点，生成可立即执行的三步整理方案。
 
-First, run the development server:
+## 功能
+
+- **AI 空间诊断** — 上传 1-4 张照片，Gemini 多模态模型逐区域识别具体杂乱点，生成「扔/留/收」三步方案
+- **个性化收纳设计** — 填写空间类型和偏好，AI 生成定制化布局方案 + 低成本工具清单（含淘宝关键词）
+- **购物欲拦截器** — AI 三问追问理性分析，输出购买评分和冷静期建议
+- **14 天断舍离挑战** — 每日一个小任务，AI 打卡督促，14 天养成整理习惯
+
+## 快速开始
 
 ```bash
+# 安装依赖
+npm install
+
+# 本地开发
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+访问 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 配置 AI Key（可选）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+复制环境变量模板：
 
-## Learn More
+```bash
+cp .env.local.example .env.local
+```
 
-To learn more about Next.js, take a look at the following resources:
+填入你的 Gemini API Key（免费获取：https://aistudio.google.com/app/apikey）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+不填 Key 时系统会自动降级到 Mock 数据，可完整体验所有页面逻辑。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 技术栈
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Next.js 16 (App Router)
+- TypeScript
+- Tailwind CSS v4
+- Gemini API
+- Lucide Icons
