@@ -25,13 +25,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Remove old build artifacts
-        run: rm -rf .next out
+      - name: Clean install dependencies
+        run: |
+          rm -rf node_modules package-lock.json .next out
+          npm install
 
       - name: Build
         run: npm run build
@@ -40,8 +38,10 @@ jobs:
 
       - name: Verify build output
         run: |
-          echo "=== out/ contents ===" && ls out/
-          echo "=== HTML files ===" && find out -name "*.html" | sort
+          echo "=== Static pages generated ==="
+          find out -name "*.html" | sort
+          echo "=== File count ==="
+          find out -type f | wc -l
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
