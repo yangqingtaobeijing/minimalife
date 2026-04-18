@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || ''
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash-lite'
 
 const SYSTEM_PROMPT = `你是一个极简收纳专家，擅长小户型和租房场景。
 请分析图片中的空间，指出具体杂乱点，给出可立即执行的三步方案。
@@ -78,7 +79,7 @@ export async function POST(request: NextRequest) {
       : ''
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
